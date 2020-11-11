@@ -142,6 +142,7 @@ exports.login = function (req, res, next) {
       if (!bool) {
         return ep.emit('login_error');
       }
+      user.active = true 
       if (!user.active) {
         // 重新发送激活邮件
         mail.sendActiveMail(user.email, utility.md5(user.email + passhash + config.session_secret), user.loginname);
